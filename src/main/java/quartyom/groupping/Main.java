@@ -22,16 +22,16 @@ public class Main {
 
     public static void solve(String filename) {
         // creating hashsets and hashmap
-        ArrayList<HashSet<String>> columns = new ArrayList<>();
-        ArrayList<HashSet<String>> repeats = new ArrayList<>();
-        ArrayList<HashMap<String, Group>> groups = new ArrayList<>();
+        List<Set<String>> columns = new ArrayList<>();
+        List<Set<String>> repeats = new ArrayList<>();
+        List<Map<String, Group>> groups = new ArrayList<>();
 
         // open file to read
         int maxColumns = 0;
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {    // line by line
             String str;
             while ((str = br.readLine()) != null) {
-                ArrayList<String> line = parseLine(str);   // parsing
+                List<String> line = parseLine(str);   // parsing
                 if (line != null) {
                     if (line.size() > maxColumns) {
                         maxColumns = line.size();
@@ -67,10 +67,10 @@ public class Main {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {    // line by line
             String str;
             while ((str = br.readLine()) != null) {
-                ArrayList<String> line = parseLine(str);   // parsing
+                List<String> line = parseLine(str);   // parsing
                 if (line != null) {
 
-                    HashMap<Group, Integer> matches = new HashMap<>();
+                    Map<Group, Integer> matches = new HashMap<>();
 
                     boolean hasRepeats = false;
 
@@ -110,7 +110,7 @@ public class Main {
                                 main.mergeWith(m[i]);
 
                                 for (int j = 0; j < mi.columns.size(); j++) {     // remapping
-                                    HashSet<String> col = mi.columns.get(j);
+                                    Set<String> col = mi.columns.get(j);
                                     for (String k : col) {
                                         groups.get(j).put(k, main);
                                     }
@@ -136,13 +136,13 @@ public class Main {
         System.out.println("done grouping");
 
         // get all groups without repeats
-        HashSet<Group> g = new HashSet<>();
-        for (HashMap<String, Group> col : groups) {
+        Set<Group> g = new HashSet<>();
+        for (Map<String, Group> col : groups) {
             g.addAll(col.values());
         }
         repeats.clear();
 
-        ArrayList<Group> groupsList = new ArrayList<>(g);
+        List<Group> groupsList = new ArrayList<>(g);
         g.clear();
 
         groupsList.sort((a, b) -> b.lines.size() - a.lines.size());

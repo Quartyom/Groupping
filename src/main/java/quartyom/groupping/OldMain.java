@@ -126,7 +126,7 @@ public class OldMain {
                         main.mergeWith(m[i]);
 
                         for (int j = 0; j < mi.columns.size(); j++) {     // remapping
-                            HashSet<String> col = mi.columns.get(j);
+                            Set<String> col = mi.columns.get(j);
                             for (String k : col) {
                                 groups.get(j).put(k, main);
                             }

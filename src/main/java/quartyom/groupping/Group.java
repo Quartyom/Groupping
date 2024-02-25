@@ -2,13 +2,15 @@ package quartyom.groupping;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Group {
-    public ArrayList<HashSet<String>> columns;
-    public HashSet<ArrayList<String>> lines;
+    public List<Set<String>> columns;
+    public Set<List<String>> lines;
     public final int capacity;
 
-    public Group(int capacity, ArrayList<String> line) {
+    public Group(int capacity, List<String> line) {
         this(capacity);
         addLine(line);
     }
@@ -32,7 +34,7 @@ public class Group {
         lines.addAll(other.lines);
     }
 
-    public void addLine(ArrayList<String> line) {
+    public void addLine(List<String> line) {
         for (int i = 0; i < line.size(); i++) {
             String value = line.get(i);
             if (!value.equals("\"\"")) {
@@ -44,7 +46,7 @@ public class Group {
 
     public String print() {         // print group lines
         StringBuilder s = new StringBuilder();
-        for (ArrayList<String> line : lines) {
+        for (List<String> line : lines) {
             for (int i = 0; i < line.size() - 1; i++) {
                 s.append(line.get(i)).append(";");
             }
@@ -53,7 +55,7 @@ public class Group {
         return s.toString();
     }
 
-    public static String print(ArrayList<String> line) {    // print one line as group
+    public static String print(List<String> line) {    // print one line as group
         StringBuilder s = new StringBuilder();
         for (int i = 0 ; i < line.size()-1; i++) {
             s.append(line.get(i)).append(";");
